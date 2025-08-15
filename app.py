@@ -5,6 +5,10 @@ from nltk.corpus import stopwords
 import nltk
 from nltk.stem.porter import PorterStemmer
 
+nltk.download("punkt")
+nltk.download("punkt_tab")
+nltk.download("stopwords")
+
 ps = PorterStemmer()
 
 
@@ -19,7 +23,7 @@ def transform_text(text):
     text = y[:]
     y.clear()
     for i in text:
-        if i not in stopwords.words('english') and i not in string.punctuation:
+        if i not in stopwords.words("english") and i not in string.punctuation:
             y.append(i)
 
     text = y[:]
@@ -31,14 +35,14 @@ def transform_text(text):
     return " ".join(y)
 
 
-tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
-model = pickle.load(open('model.pkl', 'rb'))
+tfidf = pickle.load(open("vectorizer.pkl", "rb"))
+model = pickle.load(open("model.pkl", "rb"))
 
-st.title('Email/SMS spam Classiifiers')
+st.title("Email/SMS spam Classiifiers")
 
-input_sms = st.text_area('Enter the message')
+input_sms = st.text_area("Enter the message")
 
-if st.button('Predict'):
+if st.button("Predict"):
 
     # 1 pre processing
 
